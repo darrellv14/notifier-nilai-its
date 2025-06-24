@@ -42,27 +42,31 @@ def send_notify(msg):
 
 def compare_and_notify():
     new = scrape()
-    if not new: return
+    print("DEBUG new data:", new)
 
-    # old hanya simpan nilai string
-    old = json.load(open(STATE_FILE)) if os.path.exists(STATE_FILE) else {}
+    if os.path.exists(STATE_FILE):
+        old = json.load(open(STATE_FILE))
+    else:
+        old = {}
+    print("DEBUG old data:", old)
 
-    # deteksi perubahan: dulu "_" → sekarang bukan "_" / "-"
     changed = {
-      mk: info for mk,info in new.items()
+      mk: info for mk, info in new.items()
       if mk in old 
          and old[mk] in ("_","-") 
          and info["nilai"] not in ("_","-")
     }
+    print("DEBUG changed:", changed)
 
     if changed:
-        msg = "**📢 Update Nilai Semester 6!**\n"
-        for mk, info in changed.items():
-            msg += f"- {mk} | Kelas: `{info['kelas']}` | Nilai: **{info['nilai']}**\n"
-        msg += f"\n_Waktu: {datetime.now():%d %b %Y %H:%M}_"
+        msg = "**📢 Update Nilai Semester 6!**\n" + "\n".join(
+            f"- {mk} | Kelas: `{info['kelas']}` | Nilai: **{info['nilai']}**"
+            for mk, info in changed.items()
+        )
+        print("DEBUG sending msg:", msg)
         send_notify(msg)
 
-    # update state (hanya nilai)
+    # update state…
     with open(STATE_FILE,"w") as f:
         json.dump({mk:info["nilai"] for mk,info in new.items()}, f, indent=2)
 
