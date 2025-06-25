@@ -112,5 +112,5 @@ jobs:
 
 ## Lisensi
 
-MIT © `tahun` Nama Anda
+MIT © `2025` Darrell Valentino
 
