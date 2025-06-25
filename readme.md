@@ -34,7 +34,7 @@ notifier-nilai-its/
 
 1. **Clone repository**:
    ```bash
-   git clone https://github.com/USERNAME/notifier-nilai-its.git
+   git clone https://github.com/USERNAME/notifier-nilai-its.git](https://github.com/darrellv14/notifier-nilai-its.git
    cd notifier-nilai-its
    ```
 
