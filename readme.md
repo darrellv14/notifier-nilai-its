@@ -48,7 +48,7 @@ notifier-nilai-its/
    - Export session cookie (`PHPSESSID=...`) dari browser setelah login dengan MFA.
    - Simpan di file `cookie.txt` di root repo:
      ```text
-     PHPSESSID=68f33l0fdlrdir5ou4eu3969v7
+     PHPSESSID=MASUKKANCOOKIEANDADISINI
      ```
 
 4. **Buat GitHub Self‑Hosted Runner**:
